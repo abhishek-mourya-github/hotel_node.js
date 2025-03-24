@@ -7,7 +7,7 @@ router.post("/menu", async (req, res) => {
       const newMenu = new Menu(req.body);
       const savedMenu = await newMenu.save();
       console.log("Menu save successfully");
-      res.status(201).json(savedMenu);
+      res.status(200).json(savedMenu);
     } catch (error) {
       console.error("Error saving menu", error);
       res.status(500).json({ error: "internal server error" });
@@ -18,7 +18,7 @@ router.post("/menu", async (req, res) => {
     try {
       const data = await Menu.find().limit(50);
       console.log("data fetched successfully");
-      res.status(201).json(data);
+      res.status(200).json(data);
     } catch (err) {
       console.error("Error while fetching data", err);
       res.status(500).json({ error: "Internal server error" });
@@ -31,7 +31,7 @@ router.post("/menu", async (req, res) => {
       if(menuTaste == "sweet" || menuTaste == "sour" || menuTaste == "spicy"){
         const response = await Menu.find({taste: menuTaste}).limit(50);
         console.log("data fetched");
-        res.status(201).json(response);
+        res.status(200).json(response);
       }else{
         res.status(404).json({ error: "Invalid menu taste" });
       }
@@ -55,7 +55,7 @@ router.post("/menu", async (req, res) => {
       }
 
       console.log("data updated");
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (err) {
       console.log(err);
       res.status(500).json({err: "Internal server error"});
@@ -72,7 +72,7 @@ router.post("/menu", async (req, res) => {
       }
 
       console.log("data deleted");
-      res.status(201).json({message : "item deleted successfully"});
+      res.status(200).json({message : "item deleted successfully"});
 
     } catch (err) {
       console.log(err);
