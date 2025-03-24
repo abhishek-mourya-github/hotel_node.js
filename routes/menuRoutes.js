@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const person = require('../models/menu');
 const Menu = require('../models/menu');
 
 router.post("/menu", async (req, res) => {
@@ -17,7 +16,7 @@ router.post("/menu", async (req, res) => {
   
   router.get("/menu", async (req, res) => {
     try {
-      const data = await Menu.find();
+      const data = await Menu.find().limit(50);
       console.log("data fetched successfully");
       res.status(201).json(data);
     } catch (err) {
@@ -30,7 +29,7 @@ router.post("/menu", async (req, res) => {
     try {
       const menuTaste = req.params.menuTaste;
       if(menuTaste == "sweet" || menuTaste == "sour" || menuTaste == "spicy"){
-        const response = await Menu.find({taste: menuTaste});
+        const response = await Menu.find({taste: menuTaste}).limit(50);
         console.log("data fetched");
         res.status(201).json(response);
       }else{

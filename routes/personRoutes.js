@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const person = require('./../models/person')
+const person = require('../models/person')
 
 router.post("/person", async (req, res) => {
     try {
@@ -16,7 +16,7 @@ router.post("/person", async (req, res) => {
   
   router.get("/person", async (req, res) => {
     try {
-      const data = await person.find();
+      const data = await person.find().limit(50);
       console.log("data fetched successfully");
       res.status(201).json(data);
     } catch (err) {
@@ -29,7 +29,7 @@ router.post("/person", async (req, res) => {
     try {
       const workType = req.params.workType;
       if (workType == "chef" || workType == "manager" || workType == "waiter") {
-        const response = await person.find({ work: workType });
+        const response = await person.find({ work: workType }).limit(50);
         console.log("response fetched");
         res.status(201).json(response);
       } else {
