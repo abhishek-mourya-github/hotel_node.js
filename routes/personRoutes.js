@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const person = require('../models/person')
 
-router.post("/person", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       const newPerson = new person(req.body);
       const savedPerson = await newPerson.save();
@@ -14,7 +14,7 @@ router.post("/person", async (req, res) => {
     }
   });
   
-  router.get("/person", async (req, res) => {
+  router.get("/", async (req, res) => {
     try {
       const data = await person.find().limit(50);
       console.log("data fetched successfully");
@@ -25,7 +25,7 @@ router.post("/person", async (req, res) => {
     }
   });
 
-  router.get("/person/:workType", async (req, res) => {
+  router.get("/:workType", async (req, res) => {
     try {
       const workType = req.params.workType;
       if (workType == "chef" || workType == "manager" || workType == "waiter") {
@@ -41,7 +41,7 @@ router.post("/person", async (req, res) => {
     }
   });
 
-  router.put('/person/:id',async (req, res) => {
+  router.put('/:id',async (req, res) => {
     try {
       const personId = req.params.id;
       const updatedPersonData = req.body;
@@ -59,7 +59,7 @@ router.post("/person", async (req, res) => {
     }
   })
 
-  router.delete('/person/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       
      const personId = req.params.id;

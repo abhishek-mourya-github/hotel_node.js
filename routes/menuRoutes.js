@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Menu = require('../models/menu');
 
-router.post("/menu", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       const newMenu = new Menu(req.body);
       const savedMenu = await newMenu.save();
@@ -14,7 +14,7 @@ router.post("/menu", async (req, res) => {
     }
   });
   
-  router.get("/menu", async (req, res) => {
+  router.get("/", async (req, res) => {
     try {
       const data = await Menu.find().limit(50);
       console.log("data fetched successfully");
@@ -25,7 +25,7 @@ router.post("/menu", async (req, res) => {
     }
   });
 
-  router.get('/menu/:menuTaste',async (req, res) => {
+  router.get('/:menuTaste',async (req, res) => {
     try {
       const menuTaste = req.params.menuTaste;
       if(menuTaste == "sweet" || menuTaste == "sour" || menuTaste == "spicy"){
@@ -41,7 +41,7 @@ router.post("/menu", async (req, res) => {
     }
   })
 
-  router.put('/menu/:id', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
       const menuId = req.params.id;
       const updatedMenuData = req.body;
@@ -62,7 +62,7 @@ router.post("/menu", async (req, res) => {
     }
   })
 
-  router.delete('/menu/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       const menuId = req.params.id;
 
