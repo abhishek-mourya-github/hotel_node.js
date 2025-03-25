@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   
   router.get("/", async (req, res) => {
     try {
-      const data = await Menu.find().limit(50);
+      const data = await Menu.find();
       console.log("data fetched successfully");
       res.status(200).json(data);
     } catch (err) {
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     try {
       const menuTaste = req.params.menuTaste;
       if(menuTaste == "sweet" || menuTaste == "sour" || menuTaste == "spicy"){
-        const response = await Menu.find({taste: menuTaste}).limit(50);
+        const response = await Menu.find({taste: menuTaste});
         console.log("data fetched");
         res.status(200).json(response);
       }else{

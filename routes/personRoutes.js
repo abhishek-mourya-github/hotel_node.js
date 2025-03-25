@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   
   router.get("/", async (req, res) => {
     try {
-      const data = await person.find().limit(50);
+      const data = await person.find();
       console.log("data fetched successfully");
       res.status(200).json(data);
     } catch (err) {
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     try {
       const workType = req.params.workType;
       if (workType == "chef" || workType == "manager" || workType == "waiter") {
-        const response = await person.find({ work: workType }).limit(50);
+        const response = await person.find({ work: workType });
         console.log("response fetched");
         res.status(200).json(response);
       } else {
